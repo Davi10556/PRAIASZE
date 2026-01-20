@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Praia</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- TELA DE SENHA DO SITE -->
+<div id="login-site" class="login">
+  <h2>🌴 Entrar no Site</h2>
+  <input type="password" id="senhaSite" placeholder="Senha do site">
+  <button onclick="verificarSite()">Entrar</button>
+  <p id="erroSite"></p>
+</div>
+
+<!-- SITE -->
+<div id="site" class="hidden">
+
+  <nav>
+    <button onclick="mostrar('home')">Home</button>
+    <button onclick="mostrar('fotos')">Fotos</button>
+    <button onclick="mostrar('eventos')">Eventos</button>
+  </nav>
+
+  <!-- HOME -->
+  <section id="home" class="secao">
+    <h1>🌊 Bem-vindo à Praia</h1>
+    <p>
+      A praia é um lugar com mar, areia e sol, onde as ondas se movem sem parar
+      e as pessoas vão para relaxar, brincar e aproveitar a natureza. 🌊☀️
+    </p>
+  </section>
+
+  <!-- FOTOS -->
+  <section id="fotos" class="secao hidden">
+    <h1>📸 Fotos</h1>
+    <div class="galeria">
+      <img src="praia1.png">
+      <img src="praia2.png">
+      <img src="praia3.png">
+    </div>
+  </section>
+
+  <!-- EVENTOS -->
+  <section id="eventos" class="secao hidden">
+    <h1>📅 Eventos</h1>
+
+    <div id="listaEventos"></div>
+
+    <div class="adm">
+      <input type="password" id="senhaAdm" placeholder="Senha ADM">
+      <button onclick="adicionarEvento()">➕ Adicionar Evento</button>
+      <p id="erroAdm"></p>
+    </div>
+  </section>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
