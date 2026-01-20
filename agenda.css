@@ -46,3 +46,15 @@ body {
 .evento:active {
   cursor: grabbing;
 }
+
+.evento {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  background: #ff6b6b;
+  color: white;
+  border-radius: 6px;
+  padding: 5px;
+  cursor: grab;
+  user-select: none;
+}
