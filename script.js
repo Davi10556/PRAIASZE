@@ -13,6 +13,8 @@ function verificarSite() {
   }
 }
 
+const dia = document.getElementById("dia");
+
 /* NAVEGAÇÃO */
 function mostrar(id) {
   document.querySelectorAll(".secao").forEach(s => s.classList.add("hidden"));
