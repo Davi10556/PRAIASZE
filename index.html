@@ -3,11 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <title>Praia</title>
+
+  <!-- CSS PRINCIPAL -->
   <link rel="stylesheet" href="style.css">
+
+  <!-- CSS DA AGENDA -->
+  <link rel="stylesheet" href="agenda.css">
 </head>
 <body>
 
-<!-- TELA DE SENHA DO SITE -->
+<!-- LOGIN DO SITE -->
 <div id="login-site" class="login">
   <h2>🌴 Entrar no Site</h2>
   <input type="password" id="senhaSite" placeholder="Senha do site">
@@ -43,21 +48,38 @@
     </div>
   </section>
 
-  <!-- EVENTOS -->
+  <!-- EVENTOS / AGENDA -->
   <section id="eventos" class="secao hidden">
-    <h1>📅 Eventos</h1>
+    <h1>📅 Agenda de Eventos</h1>
 
-    <div id="listaEventos"></div>
+    <!-- BOTÃO ADM -->
+    <div class="topo">
+      <button onclick="criarEvento()">➕ Novo Evento (ADM)</button>
+    </div>
 
-    <div class="adm">
-      <input type="password" id="senhaAdm" placeholder="Senha ADM">
-      <button onclick="adicionarEvento()">➕ Adicionar Evento</button>
-      <p id="erroAdm"></p>
+    <!-- AGENDA -->
+    <div class="agenda">
+      <div class="horas">
+        <div>00:00</div><div>01:00</div><div>02:00</div><div>03:00</div>
+        <div>04:00</div><div>05:00</div><div>06:00</div><div>07:00</div>
+        <div>08:00</div><div>09:00</div><div>10:00</div><div>11:00</div>
+        <div>12:00</div><div>13:00</div><div>14:00</div><div>15:00</div>
+        <div>16:00</div><div>17:00</div><div>18:00</div><div>19:00</div>
+        <div>20:00</div><div>21:00</div><div>22:00</div><div>23:00</div>
+      </div>
+
+      <!-- COLUNA DO DIA -->
+      <div class="dia" id="dia"></div>
     </div>
   </section>
 
 </div>
 
+<!-- JS PRINCIPAL -->
 <script src="script.js"></script>
+
+<!-- JS DA AGENDA -->
+<script src="agenda.js"></script>
+
 </body>
 </html>
