@@ -1,0 +1,76 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(#87ceeb, #fff);
+  text-align: center;
+}
+
+.hidden {
+  display: none;
+}
+
+.login {
+  margin-top: 120px;
+  animation: fade 1s ease;
+}
+
+input {
+  padding: 10px;
+  margin: 5px;
+}
+
+button {
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+nav {
+  background: #006994;
+  padding: 10px;
+}
+
+nav button {
+  margin: 5px;
+  background: white;
+  border: none;
+  border-radius: 5px;
+}
+
+.secao {
+  padding: 30px;
+  animation: fade 0.8s ease;
+}
+
+.galeria {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.galeria img {
+  width: 200px;
+  border-radius: 10px;
+  transition: transform 0.4s;
+}
+
+.galeria img:hover {
+  transform: scale(1.05);
+}
+
+.adm {
+  margin-top: 20px;
+}
+
+.evento {
+  background: #ffffffcc;
+  margin: 10px auto;
+  padding: 10px;
+  width: 80%;
+  border-radius: 8px;
+}
+
+@keyframes fade {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
