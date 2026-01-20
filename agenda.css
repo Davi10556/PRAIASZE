@@ -1,17 +1,7 @@
-body {
-  margin: 0;
-  font-family: Arial;
-}
-
-.topo {
-  padding: 10px;
-  background: #006994;
-  color: white;
-}
-
 .agenda {
   display: flex;
-  height: 1440px; /* 24h x 60px */
+  height: 1440px;
+  margin-top: 20px;
 }
 
 .horas {
@@ -22,7 +12,6 @@ body {
   height: 60px;
   border-bottom: 1px solid #ccc;
   font-size: 12px;
-  padding: 2px;
 }
 
 .dia {
@@ -35,26 +24,10 @@ body {
   position: absolute;
   left: 10px;
   right: 10px;
+  height: 60px;
   background: #ff6b6b;
   color: white;
   border-radius: 6px;
   padding: 5px;
   cursor: grab;
-  user-select: none;
-}
-
-.evento:active {
-  cursor: grabbing;
-}
-
-.evento {
-  position: absolute;
-  left: 10px;
-  right: 10px;
-  background: #ff6b6b;
-  color: white;
-  border-radius: 6px;
-  padding: 5px;
-  cursor: grab;
-  user-select: none;
 }
