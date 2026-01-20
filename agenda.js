@@ -1,9 +1,24 @@
+// ===== CONFIG =====
 const SENHA_ADM = "senhaadm";
-const dia = document.getElementById("dia");
+let dia = null;
 
+// Garante que o DOM carregou
+document.addEventListener("DOMContentLoaded", () => {
+  dia = document.getElementById("dia");
+});
+
+// ===== CRIAR EVENTO =====
 function criarEvento() {
+  if (!dia) {
+    alert("Agenda ainda não carregou. Abra a aba Eventos.");
+    return;
+  }
+
   const senha = prompt("Senha ADM:");
-  if (senha !== SENHA_ADM) return alert("Senha incorreta");
+  if (senha !== SENHA_ADM) {
+    alert("Senha ADM incorreta");
+    return;
+  }
 
   const nome = prompt("Nome do evento:");
   if (!nome) return;
@@ -12,23 +27,25 @@ function criarEvento() {
   evento.className = "evento";
   evento.innerText = nome;
 
-  evento.style.top = "600px";      // começa 10:00
-  evento.style.height = "60px";    // 1h
+  // 1 hora = 60px | começa às 08:00
+  evento.style.top = "480px";
+  evento.style.height = "60px";
 
   dia.appendChild(evento);
-
-  arrastavel(evento);
+  tornarArrastavel(evento);
 }
 
-function arrastavel(el) {
-  let startY, startTop;
+// ===== ARRASTAR =====
+function tornarArrastavel(el) {
+  let startY = 0;
+  let startTop = 0;
 
-  el.onmousedown = e => {
+  el.addEventListener("mousedown", (e) => {
     startY = e.clientY;
     startTop = parseInt(el.style.top);
-    document.onmousemove = mover;
-    document.onmouseup = parar;
-  };
+    document.addEventListener("mousemove", mover);
+    document.addEventListener("mouseup", soltar);
+  });
 
   function mover(e) {
     let novoTop = startTop + (e.clientY - startY);
@@ -36,8 +53,8 @@ function arrastavel(el) {
     el.style.top = novoTop + "px";
   }
 
-  function parar() {
-    document.onmousemove = null;
-    document.onmouseup = null;
+  function soltar() {
+    document.removeEventListener("mousemove", mover);
+    document.removeEventListener("mouseup", soltar);
   }
 }
