@@ -4,19 +4,16 @@
   <meta charset="UTF-8">
   <title>Praia</title>
 
-  <!-- CSS PRINCIPAL -->
   <link rel="stylesheet" href="style.css">
-
-  <!-- CSS DA AGENDA -->
   <link rel="stylesheet" href="agenda.css">
 </head>
 <body>
 
-<!-- LOGIN DO SITE -->
+<!-- LOGIN -->
 <div id="login-site" class="login">
   <h2>🌴 Entrar no Site</h2>
   <input type="password" id="senhaSite" placeholder="Senha do site">
-  <button onclick="verificarSite()">Entrar</button>
+  <button id="btnEntrar">Entrar</button>
   <p id="erroSite"></p>
 </div>
 
@@ -24,12 +21,11 @@
 <div id="site" class="hidden">
 
   <nav>
-    <button onclick="mostrar('home')">Home</button>
-    <button onclick="mostrar('fotos')">Fotos</button>
-    <button onclick="mostrar('eventos')">Eventos</button>
+    <button data-sec="home">Home</button>
+    <button data-sec="fotos">Fotos</button>
+    <button data-sec="eventos">Eventos</button>
   </nav>
 
-  <!-- HOME -->
   <section id="home" class="secao">
     <h1>🌊 Bem-vindo à Praia</h1>
     <p>
@@ -38,7 +34,6 @@
     </p>
   </section>
 
-  <!-- FOTOS -->
   <section id="fotos" class="secao hidden">
     <h1>📸 Fotos</h1>
     <div class="galeria">
@@ -48,16 +43,10 @@
     </div>
   </section>
 
-  <!-- EVENTOS / AGENDA -->
   <section id="eventos" class="secao hidden">
-    <h1>📅 Agenda de Eventos</h1>
+    <h1>📅 Agenda</h1>
+    <button id="btnNovoEvento">➕ Novo Evento (ADM)</button>
 
-    <!-- BOTÃO ADM -->
-    <div class="topo">
-      <button onclick="criarEvento()">➕ Novo Evento (ADM)</button>
-    </div>
-
-    <!-- AGENDA -->
     <div class="agenda">
       <div class="horas">
         <div>00:00</div><div>01:00</div><div>02:00</div><div>03:00</div>
@@ -68,18 +57,13 @@
         <div>20:00</div><div>21:00</div><div>22:00</div><div>23:00</div>
       </div>
 
-      <!-- COLUNA DO DIA -->
       <div class="dia" id="dia"></div>
     </div>
   </section>
 
 </div>
 
-<!-- JS PRINCIPAL -->
 <script src="script.js"></script>
-
-<!-- JS DA AGENDA -->
 <script src="agenda.js"></script>
-
 </body>
 </html>
