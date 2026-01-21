@@ -1,6 +1,6 @@
 .agenda {
   display: flex;
-  height: 1440px;
+  height: 1440px; /* 24h x 60px */
   margin-top: 20px;
 }
 
@@ -12,6 +12,7 @@
   height: 60px;
   border-bottom: 1px solid #ccc;
   font-size: 12px;
+  padding: 2px;
 }
 
 .dia {
@@ -24,10 +25,24 @@
   position: absolute;
   left: 10px;
   right: 10px;
-  height: 60px;
+  height: 60px; /* 1h */
   background: #ff6b6b;
   color: white;
   border-radius: 6px;
   padding: 5px;
   cursor: grab;
+  user-select: none;
+}
+
+.evento:hover::after {
+  content: attr(data-hora);
+  position: absolute;
+  bottom: -22px;
+  left: 0;
+  background: black;
+  color: white;
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  white-space: nowrap;
 }
