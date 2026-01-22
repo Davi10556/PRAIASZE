@@ -1,24 +1,49 @@
+/* ===== CONFIG ===== */
 const SENHA_ADM = "senhaadm";
-const SNAP = 30; // 30px = 30min
-const MAX = 1440;
+const SNAP = 30;          // 30px = 30 minutos
+const MAX = 1440;         // 24h
+let diaAtual = 0;
 
+/* ===== ELEMENTOS ===== */
 const btnNovoEvento = document.getElementById("btnNovoEvento");
 const dias = document.querySelectorAll(".dia");
+const subabas = document.querySelectorAll(".subaba");
 
-btnNovoEvento.onclick = () => {
-  if (prompt("Senha ADM:") !== SENHA_ADM) return alert("Senha errada");
+/* ===== TROCA DE DIA ===== */
+subabas.forEach(btn => {
+  btn.addEventListener("click", () => {
+    subabas.forEach(b => b.classList.remove("ativa"));
+    btn.classList.add("ativa");
+
+    diaAtual = Number(btn.dataset.dia);
+
+    dias.forEach(d => {
+      d.style.display = Number(d.dataset.dia) === diaAtual ? "block" : "none";
+    });
+  });
+});
+
+/* ===== NOVO EVENTO ===== */
+btnNovoEvento.addEventListener("click", () => {
+  if (prompt("Senha ADM:") !== SENHA_ADM) {
+    alert("Senha incorreta");
+    return;
+  }
 
   const nome = prompt("Nome do evento:");
   if (!nome) return;
 
-  const cor = prompt("Cor (red, blue, green, purple):", "red");
+  const cor = prompt(
+    "Cor do evento (ex: red, blue, green, purple, #ff9900):",
+    "#ff6b6b"
+  );
 
   const evento = document.createElement("div");
   evento.className = "evento";
-  evento.innerText = nome;
+  evento.textContent = nome;
   evento.style.setProperty("--cor", cor);
-  evento.style.top = "480px";
-  evento.style.height = "60px";
+  evento.style.top = "480px";     // 08:00
+  evento.style.height = "60px";  // 1 hora
 
   evento.innerHTML += `
     <div class="resize-top"></div>
@@ -26,84 +51,103 @@ btnNovoEvento.onclick = () => {
     <div class="excluir">✖</div>
   `;
 
-  dias[0].appendChild(evento);
+  dias[diaAtual].appendChild(evento);
 
   moverEvento(evento);
   resizeEvento(evento);
   atualizarHora(evento);
 
   evento.querySelector(".excluir").onclick = () => evento.remove();
-};
+});
 
-/* ===== MOVER ===== */
+/* ===== MOVER EVENTO ===== */
 function moverEvento(el) {
   let startY, startTop;
 
-  el.onmousedown = e => {
-    if (e.target.classList.contains("resize-top") ||
-        e.target.classList.contains("resize-bottom") ||
-        e.target.classList.contains("excluir")) return;
+  el.addEventListener("mousedown", e => {
+    if (
+      e.target.classList.contains("resize-top") ||
+      e.target.classList.contains("resize-bottom") ||
+      e.target.classList.contains("excluir")
+    ) return;
 
     startY = e.clientY;
     startTop = el.offsetTop;
 
     document.onmousemove = ev => {
-      let top = startTop + (ev.clientY - startY);
-      top = Math.round(top / SNAP) * SNAP;
-      top = Math.max(0, Math.min(MAX - el.offsetHeight, top));
-      el.style.top = top + "px";
+      let novoTop = startTop + (ev.clientY - startY);
+      novoTop = Math.round(novoTop / SNAP) * SNAP;
+      novoTop = Math.max(0, Math.min(MAX - el.offsetHeight, novoTop));
+
+      el.style.top = novoTop + "px";
       atualizarHora(el);
     };
 
-    document.onmouseup = () => document.onmousemove = null;
-  };
+    document.onmouseup = () => {
+      document.onmousemove = null;
+      document.onmouseup = null;
+    };
+  });
 }
 
-/* ===== RESIZE ===== */
+/* ===== REDIMENSIONAR EVENTO ===== */
 function resizeEvento(el) {
   const topHandle = el.querySelector(".resize-top");
   const bottomHandle = el.querySelector(".resize-bottom");
 
-  bottomHandle.onmousedown = e => resize(el, e, "bottom");
-  topHandle.onmousedown = e => resize(el, e, "top");
+  topHandle.addEventListener("mousedown", e => iniciarResize(el, e, "top"));
+  bottomHandle.addEventListener("mousedown", e => iniciarResize(el, e, "bottom"));
 }
 
-function resize(el, e, lado) {
+function iniciarResize(el, e, lado) {
   e.stopPropagation();
-  let startY = e.clientY;
-  let startTop = el.offsetTop;
-  let startHeight = el.offsetHeight;
+
+  const startY = e.clientY;
+  const startTop = el.offsetTop;
+  const startHeight = el.offsetHeight;
 
   document.onmousemove = ev => {
-    let dy = ev.clientY - startY;
+    const dy = ev.clientY - startY;
 
     if (lado === "bottom") {
-      let h = startHeight + dy;
-      h = Math.round(h / SNAP) * SNAP;
-      el.style.height = Math.max(SNAP, h) + "px";
+      let novaAltura = startHeight + dy;
+      novaAltura = Math.round(novaAltura / SNAP) * SNAP;
+      novaAltura = Math.max(SNAP, novaAltura);
+      novaAltura = Math.min(MAX - el.offsetTop, novaAltura);
+
+      el.style.height = novaAltura + "px";
     } else {
-      let newTop = startTop + dy;
-      newTop = Math.round(newTop / SNAP) * SNAP;
-      let newHeight = startHeight - dy;
-      if (newHeight >= SNAP && newTop >= 0) {
-        el.style.top = newTop + "px";
-        el.style.height = newHeight + "px";
+      let novoTop = startTop + dy;
+      novoTop = Math.round(novoTop / SNAP) * SNAP;
+      let novaAltura = startHeight - dy;
+
+      if (novaAltura >= SNAP && novoTop >= 0) {
+        el.style.top = novoTop + "px";
+        el.style.height = novaAltura + "px";
       }
     }
+
     atualizarHora(el);
   };
 
-  document.onmouseup = () => document.onmousemove = null;
+  document.onmouseup = () => {
+    document.onmousemove = null;
+    document.onmouseup = null;
+  };
 }
 
-/* ===== HORA ===== */
+/* ===== HORÁRIO ===== */
 function atualizarHora(el) {
-  const inicio = pxHora(el.offsetTop);
-  const fim = pxHora(el.offsetTop + el.offsetHeight);
+  const inicioPx = el.offsetTop;
+  const fimPx = el.offsetTop + el.offsetHeight;
+
+  const inicio = pxParaHora(inicioPx);
+  const fim = pxParaHora(fimPx);
+
   el.dataset.hora = `${inicio} - ${fim}`;
 }
 
-function pxHora(px) {
+function pxParaHora(px) {
   const h = Math.floor(px / 60);
   const m = px % 60;
   return `${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}`;
