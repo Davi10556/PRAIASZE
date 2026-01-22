@@ -3,39 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <title>Praia</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <!-- CSS PRINCIPAL -->
   <link rel="stylesheet" href="style.css">
+  <!-- CSS DA AGENDA -->
   <link rel="stylesheet" href="agenda.css">
 </head>
 <body>
 
-<!-- LOGIN -->
-<div id="login-site" class="login">
-  <h2>🌴 Entrar no Site</h2>
-  <input type="password" id="senhaSite" placeholder="Senha do site">
-  <button id="btnEntrar">Entrar</button>
-  <p id="erroSite"></p>
+<!-- ===== TELA DE SENHA ===== -->
+<div id="login">
+  <h2>🔐 Acesso ao site</h2>
+  <input type="password" id="senhaSite" placeholder="Digite a senha">
+  <button onclick="entrar()">Entrar</button>
 </div>
 
-<!-- SITE -->
-<div id="site" class="hidden">
+<!-- ===== SITE ===== -->
+<div id="site" style="display:none">
 
+  <!-- MENU -->
   <nav>
-    <button data-sec="home">Home</button>
-    <button data-sec="fotos">Fotos</button>
-    <button data-sec="eventos">Eventos</button>
+    <button onclick="mostrarAba('home')">Home</button>
+    <button onclick="mostrarAba('fotos')">Fotos</button>
+    <button onclick="mostrarAba('eventos')">Eventos</button>
   </nav>
 
-  <section id="home" class="secao">
-    <h1>🌊 Bem-vindo à Praia</h1>
+  <!-- ===== HOME ===== -->
+  <section id="home" class="aba">
+    <h1>Praia</h1>
     <p>
       A praia é um lugar com mar, areia e sol, onde as ondas se movem sem parar
       e as pessoas vão para relaxar, brincar e aproveitar a natureza. 🌊☀️
     </p>
   </section>
 
-  <section id="fotos" class="secao hidden">
-    <h1>📸 Fotos</h1>
+  <!-- ===== FOTOS ===== -->
+  <section id="fotos" class="aba" style="display:none">
     <div class="galeria">
       <img src="praia1.jpg">
       <img src="praia2.jpg">
@@ -43,39 +47,20 @@
     </div>
   </section>
 
-<section id="eventos" class="aba">
+  <!-- ===== EVENTOS ===== -->
+  <section id="eventos" class="aba" style="display:none">
 
-  <!-- SUBABAS -->
-  <div class="subabas">
-    <button class="subaba ativa" data-dia="0">Dia 1</button>
-    <button class="subaba" data-dia="1">Dia 2</button>
-    <button class="subaba" data-dia="2">Dia 3</button>
-  </div>
-
-  <!-- AGENDA -->
-  <div class="agenda">
-    <div class="horas">
-      <div>00:00</div><div>01:00</div><div>02:00</div><div>03:00</div>
-      <div>04:00</div><div>05:00</div><div>06:00</div><div>07:00</div>
-      <div>08:00</div><div>09:00</div><div>10:00</div><div>11:00</div>
-      <div>12:00</div><div>13:00</div><div>14:00</div><div>15:00</div>
-      <div>16:00</div><div>17:00</div><div>18:00</div><div>19:00</div>
-      <div>20:00</div><div>21:00</div><div>22:00</div><div>23:00</div>
+    <!-- SUB-ABAS -->
+    <div class="subabas">
+      <button class="subaba ativa" data-dia="0">Dia 1</button>
+      <button class="subaba" data-dia="1">Dia 2</button>
+      <button class="subaba" data-dia="2">Dia 3</button>
     </div>
 
-    <div class="dias">
-      <div class="dia" data-dia="0"></div>
-      <div class="dia" data-dia="1" style="display:none"></div>
-      <div class="dia" data-dia="2" style="display:none"></div>
-    </div>
-  </div>
-
-  <button id="btnNovoEvento">➕ Novo Evento</button>
-
-</section>
-
-
+    <!-- AGENDA -->
     <div class="agenda">
+
+      <!-- HORAS -->
       <div class="horas">
         <div>00:00</div><div>01:00</div><div>02:00</div><div>03:00</div>
         <div>04:00</div><div>05:00</div><div>06:00</div><div>07:00</div>
@@ -85,13 +70,24 @@
         <div>20:00</div><div>21:00</div><div>22:00</div><div>23:00</div>
       </div>
 
-      <div class="dia" id="dia"></div>
-    </div>
-  </section>
+      <!-- DIAS -->
+      <div class="dias">
+        <div class="dia" data-dia="0"></div>
+        <div class="dia" data-dia="1" style="display:none"></div>
+        <div class="dia" data-dia="2" style="display:none"></div>
+      </div>
 
+    </div>
+
+    <button id="btnNovoEvento">➕ Novo Evento</button>
+
+  </section>
 </div>
 
+<!-- JS PRINCIPAL -->
 <script src="script.js"></script>
+<!-- JS DA AGENDA -->
 <script src="agenda.js"></script>
+
 </body>
 </html>
