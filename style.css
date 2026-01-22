@@ -37,3 +37,25 @@ nav button {
   width: 200px;
   border-radius: 10px;
 }
+
+
+/* ===== SUBABAS ===== */
+.subabas {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.subaba {
+  padding: 6px 14px;
+  border: none;
+  border-radius: 20px;
+  background: #ddd;
+  cursor: pointer;
+  transition: background .2s;
+}
+
+.subaba.ativa {
+  background: #ff6b6b;
+  color: white;
+}
