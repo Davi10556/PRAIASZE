@@ -5,21 +5,20 @@
   <title>Praia</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- CSS PRINCIPAL -->
-  <link rel="stylesheet" href="style.css">
-  <!-- CSS DA AGENDA -->
-  <link rel="stylesheet" href="agenda.css">
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/agenda.css">
 </head>
 <body>
 
-<!-- ===== TELA DE SENHA ===== -->
+<!-- LOGIN -->
 <div id="login">
   <h2>🔐 Acesso ao site</h2>
   <input type="password" id="senhaSite" placeholder="Digite a senha">
   <button onclick="entrar()">Entrar</button>
 </div>
 
-<!-- ===== SITE ===== -->
+<!-- SITE -->
 <div id="site" style="display:none">
 
   <!-- MENU -->
@@ -29,7 +28,7 @@
     <button onclick="mostrarAba('eventos')">Eventos</button>
   </nav>
 
-  <!-- ===== HOME ===== -->
+  <!-- HOME -->
   <section id="home" class="aba">
     <h1>Praia</h1>
     <p>
@@ -38,29 +37,26 @@
     </p>
   </section>
 
-  <!-- ===== FOTOS ===== -->
+  <!-- FOTOS -->
   <section id="fotos" class="aba" style="display:none">
     <div class="galeria">
-      <img src="praia1.jpg">
-      <img src="praia2.jpg">
-      <img src="praia3.jpg">
+      <img src="img/praia1.jpg">
+      <img src="img/praia2.jpg">
+      <img src="img/praia3.jpg">
     </div>
   </section>
 
-  <!-- ===== EVENTOS ===== -->
+  <!-- EVENTOS -->
   <section id="eventos" class="aba" style="display:none">
 
-    <!-- SUB-ABAS -->
     <div class="subabas">
       <button class="subaba ativa" data-dia="0">Dia 1</button>
       <button class="subaba" data-dia="1">Dia 2</button>
       <button class="subaba" data-dia="2">Dia 3</button>
     </div>
 
-    <!-- AGENDA -->
     <div class="agenda">
 
-      <!-- HORAS -->
       <div class="horas">
         <div>00:00</div><div>01:00</div><div>02:00</div><div>03:00</div>
         <div>04:00</div><div>05:00</div><div>06:00</div><div>07:00</div>
@@ -70,7 +66,6 @@
         <div>20:00</div><div>21:00</div><div>22:00</div><div>23:00</div>
       </div>
 
-      <!-- DIAS -->
       <div class="dias">
         <div class="dia" data-dia="0"></div>
         <div class="dia" data-dia="1" style="display:none"></div>
@@ -80,14 +75,13 @@
     </div>
 
     <button id="btnNovoEvento">➕ Novo Evento</button>
-
   </section>
+
 </div>
 
-<!-- JS PRINCIPAL -->
-<script src="script.js"></script>
-<!-- JS DA AGENDA -->
-<script src="agenda.js"></script>
+<!-- JS -->
+<script src="js/script.js"></script>
+<script src="js/agenda.js"></script>
 
 </body>
 </html>
