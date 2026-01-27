@@ -2,88 +2,55 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Praia</title>
+    <title>Site da Praia</title>
 
-    <!-- CSS principal -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="agenda.css">
 </head>
 <body>
 
-<!-- ================= LOGIN ================= -->
-<div id="login" class="login-container">
+<!-- ===== LOGIN ===== -->
+<div id="login">
     <h2>🔒 Acesso ao site</h2>
-    <input type="password" id="senhaSite" placeholder="Senha do site">
+    <input type="password" id="senhaSite" placeholder="Senha">
+    <br><br>
     <button onclick="entrarSite()">Entrar</button>
 </div>
 
-<!-- ================= SITE ================= -->
-<div id="site" style="display:none;">
+<!-- ===== SITE ===== -->
+<div id="site" style="display:none">
 
-    <!-- MENU -->
-    <nav class="menu">
-        <button onclick="mostrarAba('home')">Home</button>
-        <button onclick="mostrarAba('fotos')">Fotos</button>
+    <h1>🏖️ Agenda da Praia</h1>
+
+    <!-- ABAS -->
+    <div class="abas">
         <button onclick="mostrarAba('eventos')">Eventos</button>
-    </nav>
+        <button onclick="mostrarAba('agenda')">Agenda</button>
+    </div>
 
-    <!-- ================= HOME ================= -->
-    <section id="home" class="aba ativa">
-        <h1>🏖️ Praia</h1>
-        <p>
-            A praia é um lugar com mar, areia e sol, onde as ondas se movem sem parar
-            e as pessoas vão para relaxar, brincar e aproveitar a natureza. 🌊☀️
-        </p>
-    </section>
+    <!-- ABA EVENTOS -->
+    <div id="eventos" class="aba ativa">
+        <h2>Eventos</h2>
 
-    <!-- ================= FOTOS ================= -->
-    <section id="fotos" class="aba">
-        <h2>📸 Fotos</h2>
-        <div class="galeria">
-            <img src="praia1.jpg" alt="Praia 1">
-            <img src="praia2.jpg" alt="Praia 2">
-            <img src="praia3.jpg" alt="Praia 3">
-        </div>
-    </section>
-
-    <!-- ================= EVENTOS ================= -->
-    <section id="eventos" class="aba">
-
-        <!-- SUBABAS -->
         <div class="subabas">
             <button onclick="mostrarDia(1)">Dia 1</button>
             <button onclick="mostrarDia(2)">Dia 2</button>
             <button onclick="mostrarDia(3)">Dia 3</button>
         </div>
 
-        <!-- DIA 1 -->
-        <div id="dia1" class="dia ativo">
-            <h3>📅 Dia 1</h3>
-            <div class="agenda" data-dia="1"></div>
-            <button onclick="adicionarEvento(1)">➕ Adicionar evento</button>
-        </div>
+        <div id="dia1" class="dia ativo">Conteúdo Dia 1</div>
+        <div id="dia2" class="dia">Conteúdo Dia 2</div>
+        <div id="dia3" class="dia">Conteúdo Dia 3</div>
+    </div>
 
-        <!-- DIA 2 -->
-        <div id="dia2" class="dia">
-            <h3>📅 Dia 2</h3>
-            <div class="agenda" data-dia="2"></div>
-            <button onclick="adicionarEvento(2)">➕ Adicionar evento</button>
-        </div>
-
-        <!-- DIA 3 -->
-        <div id="dia3" class="dia">
-            <h3>📅 Dia 3</h3>
-            <div class="agenda" data-dia="3"></div>
-            <button onclick="adicionarEvento(3)">➕ Adicionar evento</button>
-        </div>
-
-    </section>
+    <!-- ABA AGENDA -->
+    <div id="agenda" class="aba">
+        <iframe src="agenda.html" style="width:100%; height:600px; border:none;"></iframe>
+    </div>
 
 </div>
 
-<!-- JS -->
 <script src="script.js"></script>
 <script src="agenda.js"></script>
-
 </body>
 </html>
