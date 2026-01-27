@@ -1,3 +1,12 @@
+document.addEventListener("DOMContentLoaded", () => {
+    iniciarAgenda();
+});
+
+function iniciarAgenda() {
+    const agenda = document.getElementById("agenda");
+
+    if (!agenda) return; // 👈 evita crash
+
 const SENHA_SITE = "sitePraia10";
 
 function entrarSite() {
